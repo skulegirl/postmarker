@@ -12,6 +12,7 @@ from .models.emails import EmailManager
 from .models.messages import MessageManager
 from .models.senders import SenderSignaturesManager
 from .models.server import ServerManager
+from .models.servers import ServersManager
 from .models.stats import StatsManager
 from .models.status import StatusManager
 from .models.templates import TemplateManager
@@ -35,6 +36,7 @@ class PostmarkClient:
         MessageManager,
         SenderSignaturesManager,
         ServerManager,
+        ServersManager,
         StatsManager,
         StatusManager,
         TemplateManager,
@@ -51,7 +53,7 @@ class PostmarkClient:
         logs_stream=sys.stdout,
         root_api_url=DEFAULT_API,
     ):
-        assert server_token, "You have to provide token to use Postmark API"
+        assert server_token or account_token, "You have to provide token to use Postmark API"
         self.server_token = server_token
         self.account_token = account_token
         self.max_retries = max_retries
