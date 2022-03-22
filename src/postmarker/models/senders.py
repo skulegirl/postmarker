@@ -41,20 +41,22 @@ class SenderSignaturesManager(ModelManager):
         response = self.call("GET", "/senders/%s" % id)
         return self._init_instance(response)
 
-    def create(self, FromEmail, Name, ReplyToEmail=None, ReturnPathDomain=None):
+    def create(self, FromEmail, Name, ReplyToEmail=None, ReturnPathDomain=None, ConfirmationPersonalNote=None):
         data = {
             "FromEmail": FromEmail,
             "Name": Name,
             "ReplyToEmail": ReplyToEmail,
             "ReturnPathDomain": ReturnPathDomain,
+            "ConfirmationPersonalNote": ConfirmationPersonalNote,
         }
         return self._init_instance(self.call("POST", "/senders/", data=data))
 
-    def edit(self, id, Name, ReplyToEmail=None, ReturnPathDomain=None):
+    def edit(self, id, Name, ReplyToEmail=None, ReturnPathDomain=None, ConfirmationPersonalNote=None):
         data = {
             "Name": Name,
             "ReplyToEmail": ReplyToEmail,
             "ReturnPathDomain": ReturnPathDomain,
+            "ConfirmationPersonalNote": ConfirmationPersonalNote,
         }
         return self.call("PUT", "/senders/%s" % id, data=data)
 
