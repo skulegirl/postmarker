@@ -10,7 +10,7 @@ with open("README.rst") as file:
 setup(
     name="postmarker",
     url="https://github.com/Stranger6667/postmarker",
-    version="1.0",
+    version="1.0.1",
     license="MIT",
     author="Dmitry Dygalo",
     author_email="dadygalo@gmail.com",
