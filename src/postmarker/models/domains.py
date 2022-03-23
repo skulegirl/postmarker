@@ -59,13 +59,15 @@ class DomainsManager(ModelManager):
         return self.call("DELETE", "/domains/%s" % id)["Message"]
 
     def verifyspf(self, id):
-        return self.call("POST", "/domains/%s/verifyspf" % id)
+        self.call("POST", "/domains/%s/verifyspf" % id)
 
     def verifydkim(self, id):
-        return self.call("PUT", "/domains/%s/verifyDkim" % id)
+        response = self.call("PUT", "/domains/%s/verifyDkim" % id)
+        return self._init_instance(response)
 
     def verifyreturnpath(self, id):
-        return self.call("PUT", "/domains/%s/verifyReturnPath" % id)
+        response = self.call("PUT", "/domains/%s/verifyReturnPath" % id)
+        return self._init_instance(response)
 
     def rotatedkim(self, id):
         return self.call("POST", "/domains/%s/rotatedkim" % id)
